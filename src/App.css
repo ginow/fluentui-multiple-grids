@@ -1,0 +1,18 @@
+.left-grid {
+  grid-area: left;
+}
+.righttop-grid {
+  grid-area: righttop;
+}
+.rightbottom-grid {
+  grid-area: rightbottom;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    "left righttop"
+    "left rightbottom";
+  gap: 10px;
+  padding: 10px;
+}

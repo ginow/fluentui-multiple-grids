@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { FluentProvider, webLightTheme } from "@fluentui/react-components";
 import { TwoColumnGrid } from "./TwoColumnGrid";
+import { TwoColumnViewGrid } from './TwoColumnViewGrid';
 type FirstCell = {
   label: string;
   id: string;
@@ -46,10 +47,10 @@ const removedRoles: Item[] = [
 ];
 function App() {
   return (
-    <FluentProvider theme={webLightTheme}>
-      <TwoColumnGrid data={allRoles} enablesearch={true} />
-      <TwoColumnGrid data={assignedRoles} enablesearch={false} />
-      <TwoColumnGrid data={removedRoles} enablesearch={false} />
+    <FluentProvider className="grid-container" theme={webLightTheme}>
+      <TwoColumnGrid className="left-grid" data={allRoles} />
+      <TwoColumnViewGrid className="righttop-grid" data={assignedRoles} />
+      <TwoColumnViewGrid className="rightbottom-grid" data={removedRoles} />
     </FluentProvider>
   );
 }

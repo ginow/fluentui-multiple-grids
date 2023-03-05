@@ -60,7 +60,7 @@ const columns: TableColumnDefinition<Item>[] = [
     }
   })
 ];
-export const TwoColumnGrid = (props: GridProps) => {
+export const TwoColumnViewGrid = (props: GridProps) => {
   const { className, data } = props;
   const [items, setItems] = useState<Item[]>(data);
   function onChangeSearchInput(
@@ -81,25 +81,16 @@ export const TwoColumnGrid = (props: GridProps) => {
   >(() => ({ sortColumn: "firstColumnId", sortDirection: "ascending" }), []);
 
   return (
-    <div className={className}>
-      <Input
-        placeholder="Search"
-        contentBefore={<Search24Filled />}
-        id="search"
-        type="search"
-        onChange={onChangeSearchInput}
-      />
+    <>
       <DataGrid
         items={items}
         columns={columns}
         sortable
         defaultSortState={defaultSortState}
-        selectionMode="multiselect"
         getRowId={(item) => item.first.id}
-        onSelectionChange={(e, data) => console.log(data)}
       >
         <DataGridHeader>
-          <DataGridRow selectionCell={{ "aria-label": "Select all rows" }}>
+          <DataGridRow >
             {({ renderHeaderCell }) => (
               <DataGridHeaderCell>{renderHeaderCell()}</DataGridHeaderCell>
             )}
@@ -109,7 +100,6 @@ export const TwoColumnGrid = (props: GridProps) => {
           {({ item, rowId }) => (
             <DataGridRow<Item>
               key={rowId}
-              selectionCell={{ "aria-label": "Select row" }}
             >
               {({ renderCell }) => (
                 <DataGridCell>{renderCell(item)}</DataGridCell>
@@ -118,6 +108,6 @@ export const TwoColumnGrid = (props: GridProps) => {
           )}
         </DataGridBody>
       </DataGrid>
-    </div>
+    </>
   );
 };
