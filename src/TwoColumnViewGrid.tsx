@@ -8,12 +8,10 @@ import {
   DataGridProps,
   TableColumnDefinition,
   createTableColumn,
-  Input
+  Label,
 } from "@fluentui/react-components";
-import { Search24Filled } from "@fluentui/react-icons";
 import * as React from "react";
 import { ChangeEvent, useState } from "react";
-
 type FirstCell = {
   label: string;
   id: string;
@@ -33,36 +31,40 @@ type InputOnChangeData = {
 interface GridProps {
   className?: string;
   data: Item[];
+  firstColumnName: string;
+  secondColumnName: string;
+  title: string;
 }
-const columns: TableColumnDefinition<Item>[] = [
-  createTableColumn<Item>({
-    columnId: "firstColumnId",
-    compare: (a, b) => {
-      return a.first.label.localeCompare(b.first.label);
-    },
-    renderHeaderCell: () => {
-      return "first column name";
-    },
-    renderCell: (item) => {
-      return item.first.label;
-    }
-  }),
-  createTableColumn<Item>({
-    columnId: "secondColumnId",
-    compare: (a, b) => {
-      return a.first.label.localeCompare(b.first.label);
-    },
-    renderHeaderCell: () => {
-      return "second column name";
-    },
-    renderCell: (item) => {
-      return item.second.label;
-    }
-  })
-];
+
 export const TwoColumnViewGrid = (props: GridProps) => {
-  const { className, data } = props;
+  const { className, data, firstColumnName, secondColumnName, title } = props;
   const [items, setItems] = useState<Item[]>(data);
+  const columns: TableColumnDefinition<Item>[] = [
+    createTableColumn<Item>({
+      columnId: "firstColumnId",
+      compare: (a, b) => {
+        return a.first.label.localeCompare(b.first.label);
+      },
+      renderHeaderCell: () => {
+        return firstColumnName;
+      },
+      renderCell: (item) => {
+        return item.first.label;
+      }
+    }),
+    createTableColumn<Item>({
+      columnId: "secondColumnId",
+      compare: (a, b) => {
+        return a.first.label.localeCompare(b.first.label);
+      },
+      renderHeaderCell: () => {
+        return secondColumnName;
+      },
+      renderCell: (item) => {
+        return item.second.label;
+      }
+    })
+  ];
   function onChangeSearchInput(
     ev: ChangeEvent<HTMLInputElement>,
     text: InputOnChangeData
@@ -81,7 +83,10 @@ export const TwoColumnViewGrid = (props: GridProps) => {
   >(() => ({ sortColumn: "firstColumnId", sortDirection: "ascending" }), []);
 
   return (
-    <>
+    <div className={className}>
+      <div style={{ marginBottom: "40px !important" }}>
+        <Label size="medium" weight="semibold" >{title}</Label>
+      </div>
       <DataGrid
         items={items}
         columns={columns}
@@ -108,6 +113,6 @@ export const TwoColumnViewGrid = (props: GridProps) => {
           )}
         </DataGridBody>
       </DataGrid>
-    </>
+    </div>
   );
 };
