@@ -1,0 +1,2 @@
+.left-grid{grid-area:left}.righttop-grid{grid-area:righttop}.rightbottom-grid{grid-area:rightbottom}.grid-container{grid-gap:10px;display:grid;gap:10px;grid-template-areas:"left righttop" "left rightbottom";padding:10px}.grid-container>div{padding:10px}
+/*# sourceMappingURL=main.673dfd43.css.map*/
