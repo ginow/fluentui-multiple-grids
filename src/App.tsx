@@ -46,11 +46,14 @@ const removedRoles: Item[] = [
 ];
 function App() {
   return (
-    <FluentProvider className="grid-container" theme={webLightTheme}>
-      <TwoColumnGrid className="left-grid" data={allRoles} firstColumnName="Security Role" secondColumnName="Business Unit" title="All Security Roles" />
-      <TwoColumnViewGrid className="righttop-grid" data={assignedRoles} firstColumnName="Security Role" secondColumnName="Business Unit" title="Security Roles to be assigned" />
-      <TwoColumnViewGrid className="rightbottom-grid" data={removedRoles} firstColumnName="Security Role" secondColumnName="Business Unit" title="Security Roles to be removed" />
-    </FluentProvider>
+    <>
+      <h3>App created using Fluent UI v9</h3>
+      <FluentProvider className="grid-container" theme={webLightTheme}>
+        <TwoColumnGrid className="left-grid" data={allRoles} firstColumnName="Security Role" secondColumnName="Business Unit" title="All Security Roles" />
+        <TwoColumnViewGrid className="righttop-grid" data={assignedRoles} firstColumnName="Security Role" secondColumnName="Business Unit" title="Security Roles to be assigned" />
+        <TwoColumnViewGrid className="rightbottom-grid" data={removedRoles} firstColumnName="Security Role" secondColumnName="Business Unit" title="Security Roles to be removed" />
+      </FluentProvider>
+    </>
   );
 }
 
